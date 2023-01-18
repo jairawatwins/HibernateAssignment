@@ -18,12 +18,7 @@ public class DemoApplication {
 
 
 	public static void main(String[] args) {
-		System.out.println("good morning ");
 
-
-//		Configuration cfg = new Configuration();
-//		cfg.configure("hibernate.cfg.xml");
-//		SessionFactory factory = cfg.buildSessionFactory();
 
 		SessionFactory factory = new Configuration().configure(new File("src/main/resources/hibernate.cfg.xml")).buildSessionFactory();
 
@@ -32,25 +27,6 @@ public class DemoApplication {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
 		session.beginTransaction();
-
-		Department department = new Department();
-		department.setDepName("Science");
-
-		Student student1 = new Student();
-		student1.setFirstName("Abhimanyu");
-		student1.setLastName("Verma");
-		student1.setDepartment(department);
-
-		Student student2 = new Student();
-		student2.setFirstName("Rohit");
-		student2.setLastName("Sharma");
-		student2.setDepartment(department);
-
-		Set<Student> studSet = new HashSet<Student>();
-		studSet.add(student1);
-		studSet.add(student2);
-		department.setStudents(studSet);
-//		session.save(department);
 
 		session.getTransaction().commit();
 		session.close();
